@@ -148,7 +148,14 @@ Drupal.wysiwyg.editor.attach.ckeditor = function(context, params, settings) {
   };
 
   // Attach editor.
-  CKEDITOR.replace(params.field, settings);
+  //CKEDITOR.replace(params.field, settings);
+  /**
+   * The CKEDITOR.replace() method is where extraAllowedContent must specify a value which prevents the stripping of @style values
+   * @author griffinj@lafayette.edu
+   * Resolves DSS-282
+   *
+   */
+  CKEDITOR.replace(params.field, $.extend(settings, { allowedContent: true }));
 };
 
 /**
